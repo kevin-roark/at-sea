@@ -3,7 +3,7 @@ html, body {
 }
 
 .content-list {
-  width: 6000px;
+  width: 100%;
 
   /* lol a ton of super annoying flexbox prefixes */
   display: -webkit-box;
@@ -34,6 +34,6 @@ html, body {
 .content-item {
   display: block;
   margin: 0; padding: 0;
-  height: 666px;
+  height: 333px;
   flex-grow: 1;
 }
