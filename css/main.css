@@ -37,3 +37,23 @@ html, body {
   height: 333px;
   flex-grow: 1;
 }
+
+.audio-player {
+  position: fixed;
+  top: 20px; left: 20px;
+}
+
+.track-title {
+  text-align: center;
+}
+
+.audio-player-button {
+  display: inline-block;
+  margin: 12px;
+  cursor: pointer;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
