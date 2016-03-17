@@ -10,13 +10,15 @@ if (args.length === 0) {
   return;
 }
 
+var prefix = args.length > 1 ? args[1] : Math.floor(Math.random() * 100000);
+
 var dir = args[0];
 
 fs.readdirSync(dir).forEach(function(file, idx) {
   var filepath = path.join(dir, file);
 
   var extension = path.extname(file);
-  var newPath = path.join(dir, idx + extension);
+  var newPath = path.join(dir, prefix + '-' + idx + extension);
 
   fs.renameSync(filepath, newPath);
 });

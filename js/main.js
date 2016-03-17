@@ -5,7 +5,7 @@
 
   var shuffledImageSources = [];
 
-  var nextThreshold = 333;
+  var nextThreshold = 333 * 4;
 
   window.addEventListener('scroll', function() {
     if (window.scrollY > nextThreshold) {
@@ -15,7 +15,7 @@
   }, false);
 
   function addImagesToBottom() {
-    var numberOfImages = Math.ceil(window.innerWidth / 333);
+    var numberOfImages = Math.round(window.innerWidth / 333);
 
     for (var i = 0 ; i < numberOfImages; i++) {
       if (shuffledImageSources.length === 0) {
