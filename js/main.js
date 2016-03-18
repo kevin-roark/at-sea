@@ -74,10 +74,12 @@
   var currentTrackEl = document.querySelector('#current-track-title');
   var prevTrackEl = document.querySelector('#prev-track-button');
   var nextTrackEl = document.querySelector('#next-track-button');
+  var trackTimeEl = document.querySelector('.track-time');
+  var trackNumberEl = document.querySelector('.track-number');
 
   playPauseEl.onclick = function() {
     if (!activeAudioElement) {
-      updateWithTrackIndex(currentTrackIndex);
+      activateFirstTrack();
       return;
     }
 
@@ -107,7 +109,41 @@
     return audio;
   }
 
+  function activateFirstTrack() {
+    updateWithTrackIndex(currentTrackIndex);
+
+    playPauseEl.classList.remove('big-font');
+    prevTrackEl.classList.remove('transparent');
+    nextTrackEl.classList.remove('transparent');
+
+    function updateCurrentTime() {
+      if (!activeAudioElement) {
+        return;
+      }
+
+      var current = secondsToMinutesSeconds(activeAudioElement.currentTime);
+      var duration = secondsToMinutesSeconds(activeAudioElement.duration);
+      trackTimeEl.innerText = current + '/' + duration;
+    }
+
+    updateCurrentTime();
+    setInterval(updateCurrentTime, 250);
+  }
+
+  function secondsToMinutesSeconds(s) {
+    var seconds = Math.floor(s) % 60;
+    if (seconds < 10) {
+      seconds = '0' + seconds;
+    }
+
+    var minutes = Math.floor((s / 60) % 60);
+
+    return minutes + ':' + seconds;
+  }
+
   function goToNextTrack() {
+    if (!activeAudioElement) return;
+
     currentTrackIndex = nextIndexFromIndex(currentTrackIndex);
 
     var nextTrackIndex = nextIndexFromIndex(currentTrackIndex);
@@ -117,6 +153,8 @@
   }
 
   function goToPrevTrack() {
+    if (!activeAudioElement) return;
+
     currentTrackIndex = prevIndexFromIndex(currentTrackIndex);
 
     var prevTrackIndex = prevIndexFromIndex(currentTrackIndex);
@@ -141,6 +179,8 @@
     var trackName = trackNames[trackIndex];
     var simpleName = trackName.substring(trackName.lastIndexOf('_') + 1);
     currentTrackEl.innerText = simpleName;
+
+    trackNumberEl.innerText = (trackIndex + 1) + '/' + trackNames.length;
 
     playPauseEl.innerText = 'Pause';
   }
