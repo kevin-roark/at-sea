@@ -111,7 +111,7 @@
 
   function makeAudioElement(trackName, preload) {
     var audio = document.createElement('audio');
-    audio.src = '/media/tracks/' + trackName + '.mp3';
+    audio.src = 'media/tracks/' + trackName + '.mp3';
     audio.preload = preload ? true : false; // to get around undefined, I'm not dumb
 
     return audio;
