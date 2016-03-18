@@ -5,17 +5,19 @@
 
   var shuffledImageSources = [];
 
-  var nextThreshold = 333 * 4;
+  var rowsToAddAtOnce = 8;
+  var rowHeight = 333;
+  var nextThreshold = rowHeight * rowsToAddAtOnce;
 
   window.addEventListener('scroll', function() {
     if (window.scrollY > nextThreshold) {
-      nextThreshold += 333;
+      nextThreshold += (rowHeight * rowsToAddAtOnce);
       addImagesToBottom();
     }
   }, false);
 
   function addImagesToBottom() {
-    var numberOfImages = Math.round(window.innerWidth / 333);
+    var numberOfImages = rowsToAddAtOnce * Math.round(window.innerWidth / 333);
 
     for (var i = 0 ; i < numberOfImages; i++) {
       if (shuffledImageSources.length === 0) {
