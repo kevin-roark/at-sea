@@ -46,9 +46,20 @@ html, body {
 .cover-image {
   position: absolute;
   top: 25px; right: 25px;
-  max-width: 666px;
+  max-width: 666px; max-height: 666px;
   box-shadow: 0 10px 15px 5px rgba(0,0,0,0.35), 0 6px 6px rgba(0,0,0,0.5);
+
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -o-transition: all 500ms;
+  transition: all 500ms;
 }
+  .cover-image img {
+    width: 100%; height: 100%;
+  }
+  .cover-image:hover {
+    box-shadow: 0 19px 15px 5px rgba(0,0,0,0.4), 0 10px 10px rgba(0,0,0,0.6);
+  }
 
 .audio-player {
   position: fixed;
