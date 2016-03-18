@@ -93,11 +93,11 @@
 
     if (activeAudioElement.paused) {
       activeAudioElement.play();
-      playPauseEl.innerText = 'Pause';
+      playPauseEl.textContent = 'Pause';
     }
     else {
       activeAudioElement.pause();
-      playPauseEl.innerText = 'Play';
+      playPauseEl.textContent = 'Play';
     }
   };
 
@@ -131,7 +131,7 @@
 
       var current = secondsToMinutesSeconds(activeAudioElement.currentTime);
       var duration = secondsToMinutesSeconds(activeAudioElement.duration);
-      trackTimeEl.innerText = current + '/' + duration;
+      trackTimeEl.textContent = current + '/' + duration;
     }
 
     updateCurrentTime();
@@ -186,11 +186,11 @@
 
     var trackName = trackNames[trackIndex];
     var simpleName = trackName.substring(trackName.lastIndexOf('_') + 1);
-    currentTrackEl.innerText = simpleName;
+    currentTrackEl.textContent = simpleName;
 
-    trackNumberEl.innerText = (trackIndex + 1) + '/' + trackNames.length;
+    trackNumberEl.textContent = (trackIndex + 1) + '/' + trackNames.length;
 
-    playPauseEl.innerText = 'Pause';
+    playPauseEl.textContent = 'Pause';
   }
 
   function getAudioElement(trackIndex) {
