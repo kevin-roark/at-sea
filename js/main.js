@@ -165,13 +165,16 @@
 
     currentTrackIndex = prevIndexFromIndex(currentTrackIndex);
 
-    var prevTrackIndex = prevIndexFromIndex(currentTrackIndex);
-    getAudioElement(prevTrackIndex).preload = true;
-
     updateWithTrackIndex(currentTrackIndex);
   }
 
   function updateWithTrackIndex(trackIndex) {
+    var trackName = trackNames[trackIndex];
+    var simpleName = trackName.substring(trackName.lastIndexOf('_') + 1);
+    currentTrackEl.textContent = simpleName;
+
+    trackNumberEl.textContent = (trackIndex + 1) + '/' + trackNames.length;
+
     if (activeAudioElement) {
       activeAudioElement.pause();
       activeAudioElement.currentTime = 0;
@@ -179,18 +182,16 @@
     }
 
     activeAudioElement = getAudioElement(trackIndex);
+    activeAudioElement.onplaying = function() {
+      playPauseEl.textContent = 'Pause';
+    };
+
     activeAudioElement.play();
     activeAudioElement.onended = function() {
       goToNextTrack();
     };
 
-    var trackName = trackNames[trackIndex];
-    var simpleName = trackName.substring(trackName.lastIndexOf('_') + 1);
-    currentTrackEl.textContent = simpleName;
-
-    trackNumberEl.textContent = (trackIndex + 1) + '/' + trackNames.length;
-
-    playPauseEl.textContent = 'Pause';
+    cleanseExcessAudioElements();
   }
 
   function getAudioElement(trackIndex) {
@@ -204,6 +205,21 @@
     element = makeAudioElement(trackName, false);
     audioElements[trackName] = element;
     return element;
+  }
+
+  function cleanseExcessAudioElements() {
+    for (var i = 0; i < trackNames.length; i++) {
+      if (i === currentTrackIndex || i === nextIndexFromIndex(currentTrackIndex)) {
+        continue;
+      }
+
+      var trackName = trackNames[i];
+      var audioElement = audioElements[trackName];
+      if (audioElement) {
+        audioElement.src = '';
+        delete audioElements[trackName];
+      }
+    }
   }
 
   function nextIndexFromIndex(index) {
