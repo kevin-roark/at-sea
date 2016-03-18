@@ -43,6 +43,13 @@ html, body {
   user-select: none;
 }
 
+.cover-image {
+  position: absolute;
+  top: 25px; right: 25px;
+  max-width: 666px;
+  box-shadow: 0 10px 15px 5px rgba(0,0,0,0.35), 0 6px 6px rgba(0,0,0,0.5);
+}
+
 .audio-player {
   position: fixed;
   top: 20px; left: 20px;
@@ -91,6 +98,6 @@ html, body {
 }
 
 .big-font {
-  font-size: 44px;
+  font-size: 50px;
   margin-left: -20px;
 }
