@@ -112,3 +112,39 @@ html, body {
   font-size: 50px;
   margin-left: -20px;
 }
+
+.hidden-overflow {
+  overflow: hidden;
+}
+
+.splash {
+  position: fixed;
+  left: 0; top: 0; width: 100%; height: 100%;
+  background-color: white;
+
+  -webkit-transition: all 800ms;
+  -moz-transition: all 800ms;
+  -o-transition: all 800ms;
+  transition: all 800ms;
+}
+
+  .splash-image {
+    position: absolute;
+    width: 50%;
+    margin-left: 25%;
+    top: 80px;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    -webkit-transition: transform 800ms;
+    -moz-transition: transform 800ms;
+    -o-transition: transform 800ms;
+    transition: transform 800ms;
+  }
+
+  .shadow-splash-image {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
